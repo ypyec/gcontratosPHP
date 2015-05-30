@@ -19,15 +19,25 @@
 			self::$id = $id;
 		}
 		
-	    public function getNombre(){
+	    public function getNombres(){
 	        return $nombres;
 	    }
-		public function setNombre($nombres){
-			self::$nombres = $nombres;
+		public function setNombres($entNombres){
+			$nombres = $entNombres;
 		}
 		
 		public function getApellidos(){
-			
+			return $apellidos;
+		}
+		public function setApellidos(){
+			self::$apellidos = $apellidos;
+		}
+
+		public function getProfesion(){
+			return $profesion;
+		}
+		public function setProfesion(){
+			self::$profesion = $profesion;
 		}
 
 	}
