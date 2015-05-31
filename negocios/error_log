@@ -17,3 +17,12 @@
 [30-May-2015 15:31:22 America/Denver] PHP Fatal error:  Access to undeclared static property: NegoPersona::$nombres in /home/mindsoft/public_html/jackpot/test/negoPersona.php on line 26
 [30-May-2015 15:31:23 America/Denver] PHP Fatal error:  Access to undeclared static property: NegoPersona::$nombres in /home/mindsoft/public_html/jackpot/test/negoPersona.php on line 26
 [30-May-2015 15:31:24 America/Denver] PHP Fatal error:  Access to undeclared static property: NegoPersona::$nombres in /home/mindsoft/public_html/jackpot/test/negoPersona.php on line 26
+[30-May-2015 15:36:48 America/Denver] PHP Fatal error:  Access to undeclared static property: NegoPersona::$apellidos in /home/mindsoft/public_html/jackpot/test/negoPersona.php on line 33
+[30-May-2015 15:36:50 America/Denver] PHP Fatal error:  Access to undeclared static property: NegoPersona::$apellidos in /home/mindsoft/public_html/jackpot/test/negoPersona.php on line 33
+[30-May-2015 15:36:54 America/Denver] PHP Fatal error:  Access to undeclared static property: NegoPersona::$apellidos in /home/mindsoft/public_html/jackpot/test/negoPersona.php on line 33
+[30-May-2015 15:41:22 America/Denver] PHP Fatal error:  Access to undeclared static property: NegoPersona::$apellidos in /home/mindsoft/public_html/jackpot/test/negoPersona.php on line 34
+[30-May-2015 15:44:02 America/Denver] PHP Fatal error:  Cannot access empty property in /home/mindsoft/public_html/jackpot/test/negoPersona.php on line 34
+[30-May-2015 15:44:03 America/Denver] PHP Fatal error:  Cannot access empty property in /home/mindsoft/public_html/jackpot/test/negoPersona.php on line 34
+[30-May-2015 15:44:04 America/Denver] PHP Fatal error:  Cannot access empty property in /home/mindsoft/public_html/jackpot/test/negoPersona.php on line 34
+[30-May-2015 16:51:34 America/Denver] PHP Fatal error:  Cannot redeclare NegoPersona::setCiudad() in /home/mindsoft/public_html/jackpot/test/negoPersona.php on line 54
+[30-May-2015 16:51:37 America/Denver] PHP Fatal error:  Cannot redeclare NegoPersona::setCiudad() in /home/mindsoft/public_html/jackpot/test/negoPersona.php on line 54

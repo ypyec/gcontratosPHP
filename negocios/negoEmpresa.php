@@ -1,42 +1,37 @@
 <?php
+	include_once 'negoPersona.php';
 	include_once 'negoCuentaBanco.php';
 
-	class NegoPersona{
-		private $id;
-		private $nombres;
-		private $apellidos;
-		private $profesion;
+	class NegoEmpresa{
+		private $ruc;
+		private $nombre;
+		private $especializacion;
 		private $telefono;
 		private $ciudad;
 		private $pais;
 		private $cargo;
+		private $persona;
 		private $idCuentaX;
 		private $experienciaX;
 		private $direccionX;
 	    
-	    public function getId(){
-	        return $this->id;
+	    public function getRuc(){
+	        return $this->ruc;
 	    }
-		public function setId($id){
-			$this->id = $id;
+		public function setRuc($ruc){
+			$this->ruc = $ruc;
 		}
-	    public function getNombres(){
-	        return $this->nombres;
+	    public function getNombre(){
+	        return $this->nombre;
 	    }
-		public function setNombres($nombres){
-			$this->nombres = $nombres;
+		public function setNombre($nombre){
+			$this->nombre = $nombre;
 		}
-		public function getApellidos(){
-			return $this->apellidos;
+		public function getEspecializacion(){
+			return $this->especializacion;
 		}
-		public function setApellidos($apellidos){
-			$this->apellidos = $apellidos;
-		}
-		public function getProfesion(){
-			return $this->profesion;
-		}
-		public function setProfesion($profesion){
-			$this->profesion = $profesion;
+		public function setEspecializacion($especializacion){
+			$this->especializacion = $especializacion;
 		}
 		public function getTelefono(){
 			return $this->telefono;
@@ -62,6 +57,12 @@
 		public function setCargo($cargo){
 			$this->cargo = $cargo;
 		}
+		public function getPersona(){
+			return $this->persona;
+		}
+		public function setPersona($persona){
+			$this->persona = $persona;
+		}
 		public function getIdCuentaX(){
 			return $this->idCuentaX;
 		}
@@ -79,7 +80,7 @@
 		}
 		public function setDireccionX($direccionX){
 			$this->direccionX = $direccionX;
-		}	
+		}
 		
 	}
 ?>
