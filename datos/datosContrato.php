@@ -6,8 +6,8 @@ class datosContrato {
     public static function crearContrato($fechaInicio, $fechaFin, $consultoria, $monto, $pais, $usu_id, $per_ID, $proy_ID, $fechaFirma, $emp_ruc=null, $link=null) {
         
         $sql = "INSERT INTO T_CONTRATO (CON_FECHA_INI, CON_FECHA_FIN, CON_CONSULTORIA, CON_MONTO, CON_PAIS, USU_ID, EMP_RUC, PER_ID, PROY_ID, CON_LINK, CON_FECHA_FIRMA) VALUES ('".$fechaInicio."','".$fechaFin."','".$consultoria."','".$monto."','".$pais."','".$usu_id."',".(($emp_ruc==null)?'null':"'".$emp_ruc."'").",'" .$per_ID."','".$proy_ID."',".(($link==null)?'null':"'".$link."'").",'".$fechaFirma."')";
-        echo $sql;
-        //self::ejecutarConsulta($sql);
+        
+        self::ejecutarConsulta($sql);
     }
     
     public static function buscarContratoProyecto($proyecto) {
@@ -56,5 +56,4 @@ class datosContrato {
         }
     }
 }
-datosContrato::crearContrato(2,2,2,2,2,2,2,2,2)
 ?>
