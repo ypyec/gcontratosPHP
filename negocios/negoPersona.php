@@ -1,4 +1,5 @@
 <?php
+	include_once '../datos/config.php';
 	include_once 'negoCuentaBanco.php';
 
 	class NegoPersona{
@@ -13,6 +14,25 @@
 		private $idCuentaX;
 		private $experienciaX;
 		private $direccionX;
+
+		function __construct($id=null,$nombres=null,$apellidos=null,$profesion=null,$telefono=null,$ciudad=null,$pais=null,$cargo=null,$idCuentaX=null,$experienciaX=null,$direccionX=null){
+
+			$parametros = get_defined_vars();
+			$variables = get_class_vars(__CLASS__);
+			
+			foreach ($parametros as $nombre_parametro => $valor) {
+				if($valor == null)
+					break;
+				else{
+					foreach ($variables as $nombre_variable => $default) {				
+						if($nombre_variable==$nombre_parametro){
+							$this->$nombre_variable = $valor;
+							break;
+						}
+					}
+				}
+			}			
+		}
 	    
 	    public function getId(){
 	        return $this->id;
