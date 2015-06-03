@@ -1,9 +1,30 @@
 <?php
+	include_once '../datos/config.php';
+	
 	class NegoCuentaBanco{
 		private $numero;
         private $nombreBanco;
         private $tipo = "N/A";
         private $swift = "N/A";
+
+        function __construct($numero=null,$nombreBanco=null,$tipo=null,$swift=null){
+
+			$parametros = get_defined_vars();
+			$variables = get_class_vars(__CLASS__);
+			
+			foreach ($parametros as $nombre_parametro => $valor) {
+				if($valor == null)
+					break;
+				else{
+					foreach ($variables as $nombre_variable => $default) {				
+						if($nombre_variable==$nombre_parametro){
+							$this->$nombre_variable = $valor;
+							break;
+						}
+					}
+				}
+			}			
+		}
 	    
 	    public function getNumero(){
 	        return $this->numero;
