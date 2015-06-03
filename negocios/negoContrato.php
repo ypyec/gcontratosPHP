@@ -1,4 +1,6 @@
 <?php
+	include_once '../datos/config.php';
+	include_once '../datos/datosContrato.php';
 	include_once 'negoPersona.php';
 	include_once 'negoEmpresa.php';
 	include_once 'negoProyecto.php';
@@ -25,6 +27,25 @@
 		private $formaPagoX;
 		private $fechaElaboracionX;
 		private $duracionX;
+
+		function __construct($numero=null,$fechaInicio=null,$fechaFin=null,$consultoria=null,$monto=null,$pais=null,$fechaFirma=null,$link=null,$usuario=null,$persona=null,$persona=null,$empresa=null,$proyecto=null,$descripcionX=null,$obligacionesAdicionalesX=null,$IVAX=null,$IRX=null,$gastosX=null,$formaPagoX=null,$fechaElaboracionX=null,$duracionX=null){
+
+			$parametros = get_defined_vars();
+			$variables = get_class_vars(__CLASS__);
+
+			foreach ($parametros as $nombre_parametro => $valor) {
+				if($valor == null)
+					break;
+				else{
+					foreach ($variables as $nombre_variable => $default) {				
+						if($nombre_variable==$nombre_parametro){
+							$this->$nombre_variable = $valor;
+							break;
+						}
+					}
+				}
+			}			
+		}
 
 	    public function getNumero(){
 	        return $this->numero;
@@ -145,6 +166,9 @@
 		}
 		public function setDuracionX($duracionX){
 			$this->duracionX = $duracionX;
+		}
+		public function crearContrato(){
+			datosContrato::crearContrato();
 		}
 	}
 ?>
