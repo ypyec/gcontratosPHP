@@ -1,4 +1,5 @@
 <?php
+	include_once '../datos/config.php';
 	include_once 'negoContrato.php';
 	include_once 'negoUsuario.php';
 
@@ -17,6 +18,25 @@
 		private $gastosX;
 		private $formaPagoX;
 		private $fechaElaboracionX;
+
+		function __construct($id=null,$numero=null,$fechaFin=null,$consultoria=null,$monto=null,$link=null,$usuario=null,$contrato=null,$descripcionX=null,$IVAX=null,$IRX=null,$gastosX=null,$formaPagoX=null,$fechaElaboracionX=null){
+			
+			$parametros = get_defined_vars();
+			$variables = get_class_vars(__CLASS__);
+			
+			foreach ($parametros as $nombre_parametro => $valor) {
+				if($valor == null)
+					break;
+				else{
+					foreach ($variables as $nombre_variable => $default) {				
+						if($nombre_variable==$nombre_parametro){
+							$this->$nombre_variable = $valor;
+							break;
+						}
+					}
+				}
+			}			
+		}
 
 	    public function getId(){
 	        return $this->id;
