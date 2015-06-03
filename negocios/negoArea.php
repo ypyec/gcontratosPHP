@@ -44,5 +44,4 @@
 			echo (datosArea::buscarArea($this->id));
 		}
 	}
-$area = new NegoArea();
 ?>
