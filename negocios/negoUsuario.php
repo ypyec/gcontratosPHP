@@ -1,5 +1,6 @@
 <?php
 	include_once '../datos/config.php';
+    include_once '../datos/datosUsuario.php';
 	
 	class NegoUsuario{
 		private $id;
@@ -43,5 +44,19 @@
 		public function setEmail($email){
 			$this->email = $email;
 		}
+        
+        public function crearUsuario() {
+            
+            return datosUsuario::crearUsuario($this->nombre,$this->email);
+        }
+        
+        public function actualizarUsuario() {
+            
+            return datosUsuario::actualizarUsuario($this->nombre,$this->email,$this->id);
+        }
+        public function buscarUsuario() {
+            
+            return datosUsuario::buscarUsuario($this->id);
+        }
 	}
 ?>

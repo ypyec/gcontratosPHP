@@ -1,5 +1,6 @@
 <?php
-	include_once '../datos/config.php';
+    include_once '../datos/config.php';
+    include_once '../datos/datosEmpresa.php';
 	include_once 'negoPersona.php';
 	include_once 'negoCuentaBanco.php';
 
@@ -16,7 +17,7 @@
 		private $experienciaX;
 		private $direccionX;
 
-		function __construct($numero=null,$nombreBanco=null,$tipo=null,$swift=null,$ruc=null,$nombre=null,$especializacion=null,$telefono=null,$ciudad=null,$pais=null,$cargo=null,$persona=null,$idCuentaX=null,$experienciaX=null,$direccionX=null){
+		function __construct($ruc=null,$nombre=null,$especializacion=null,$telefono=null,$ciudad=null,$pais=null,$cargo=null,$persona=null,$idCuentaX=null,$experienciaX=null,$direccionX=null){
 
 			$parametros = get_defined_vars();
 			$variables = get_class_vars(__CLASS__);
@@ -101,6 +102,47 @@
 		public function setDireccionX($direccionX){
 			$this->direccionX = $direccionX;
 		}
-		
+        
+        public function crearEmpresa() {
+            
+            return datosEmpresa::crearEmpresa($this->ruc,$this->nombre,$this->especializacion,$this->telefono,$this->ciudad,$this->pais,$this->cargo,$this->persona);
+        }
+        
+        public function actualizarEmpresa() {
+            
+            return datosEmpresa::actualizarEmpresa($this->ruc,$this->nombre,$this->especializacion,$this->telefono,$this->ciudad,$this->pais,$this->cargo,$this->persona);
+        }
+        
+        public function buscarEmpresa() {
+            
+            if($this->ruc == null) 
+                return "El RUC de la empresa esta vacio";
+            else
+                return datosEmpresa::buscarEmpresa($this->ruc);
+        }
+        
+        public function buscarEmpresaNombre() {
+            
+            if($this->nombre == null)
+                return "El nombre de la empresa esta vacio";
+            else
+                return datosEmpresa::buscarEmpresaNombre($this->persona);
+        }
+        
+        public function buscarEmpresaRepresentante() {
+            
+            if($this->persona == null)
+                return "El id de la persona esta vacio";
+            else
+                return datosEmpresa::buscarEmpresaRepresentante($this->persona);
+        }
+        
+        public function buscarEmpresaEspecializacion() {
+                
+            if($this->especializacion == null)
+                return "La especializacion de la empresa esta vacia";
+            else
+                return datosEmpresa::buscarEmpresaEspecializacion($this->especializacion);
+        }
 	}
 ?>

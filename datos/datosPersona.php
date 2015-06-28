@@ -1,13 +1,12 @@
 <?php
-include_once "config.php";
 
 class datosPersona {
     
     public static function crearPersona($id, $nombres, $apellidos, $profesion, $telefono, $ciudad, $pais, $cargo) {
 
-        $sql = "INSERT INTO T_PERSONA VALUES ('".$id."','".$nombres."','".$apellidos."','".$profesion."','".$telefono."','".$ciudad."','".$pais."','".$cargo."')"; 
+        $sql = "INSERT INTO T_PERSONA VALUES ('".$id."','".$nombres."','".$apellidos."','".is_null($profesion)?'null':$profesion."','".is_null($telefono)?'null':$telefono."','".is_null($ciudad)?'null':$ciudad."','".is_null($pais)?'null':$ciudad."','".is_null($cargo)?'null':$cargo."')"; 
         
-        self::ejecutarConsulta($sql);
+        return self::ejecutarConsulta($sql);
     }
     
     public static function actualizarPersona($id, $nombres, $apellidos, $profesion, $telefono, $ciudad, $pais, $cargo){

@@ -1,5 +1,4 @@
 <?php
-include_once "config.php";
 
 class datosEmpresa {
     
@@ -7,14 +6,14 @@ class datosEmpresa {
         
         $sql = "INSERT INTO T_EMPRESA VALUES ('".$RUC."','".$nombre."','".$especializacion."','".$telefono."','".$ciudad."','".$pais."','".$cargo."','".$persona_id."')";        
         
-        self::ejecutarConsulta($sql);
+        return self::ejecutarConsulta($sql);
     }
     
     public static function actualizarEmpresa($RUC, $nombre, $especializacion, $telefono, $ciudad, $pais, $cargo, $persona_id) {
         
         $sql = "UPDATE T_EMPRESA SET EMP_NOMBRE='".$nombre."',EMP_ESPECIALIDAD='".$especializacion."',EMP_TELEFONO='".$telefono."',EMP_CIUDAD='".$ciudad."',EMP_PAIS='".$pais."',EMP_CARGO='".$cargo."',PER_ID='".$persona_id."' WHERE EMP_RUC='".$RUC."'";
         
-        self::ejecutarConsulta($sql);
+        return self::ejecutarConsulta($sql);
     }
     
     public static function buscarEmpresa($id) {
@@ -59,7 +58,7 @@ class datosEmpresa {
             $conexion->close();
             return $objeto;
         }else{
-            echo "Error en la consulta: " . $conexion->error;
+            return "Error en la consulta: " . $conexion->error;
             $conexion->close();
         }
     }

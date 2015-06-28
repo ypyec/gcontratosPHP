@@ -1,29 +1,24 @@
 <?php
 
-class datosProyecto {
- 
-    public static function crearProyecto($nombre, $a_ID) {
+class datosUsuario {
+    
+    public static function crearUsuario($nombre,$mail) {
         
-        $sql = "INSERT INTO T_PROYECTO (PROY_NOMBRE, A_ID) VALUES ('".$nombre."','".$a_ID."')";
+        $sql = "INSERT INTO T_USUARIO ('USU_NOMBRE','USU_MAIL') VALUES ('".$nombre."','".$mail."')";
         
         return self::ejecutarConsulta($sql);
     }
     
-    public static function actualizarProyecto($nombre, $a_ID, $proy_ID) {
+    public static function actualizarUsuario($nombre,$mail,$usuId) {
+     
+        $sql = "UPDATE T_USUARIO SET USU_NOMBRE='".$nombre."', USU_MAIL='".$mail."' WHERE USU_ID='".$usuId."'";
         
-        $sql = "UPDATE T_PROYECTO SET PROY_NOMBRE='".$nombre."',A_ID='".$a_ID."' WHERE PROY_ID='".$proy_ID."'";
-        
-        self::ejecutarConsulta($sql);
+        return self::ejecutarConsulta($sql);
     }
     
-    public static function buscarProyecto($id=null) {
-     
-        $sql = "SELECT * FROM T_PROYECTO";
+    public static function buscarUsuario($id) {
         
-        if($id != null) {
-            
-            $sql .= " WHERE PROY_ID='".$id."'";
-        }
+        $sql = "SELECT * FROM T_USUARIO WHERE USU_ID='.$id.'";
         
         return self::ejecutarConsulta($sql);
     }
@@ -42,9 +37,10 @@ class datosProyecto {
             $conexion->close();
             return $objeto;
         }else{
-            echo "Error en la consulta: " . $conexion->error;
+            return "Error en la consulta: " . $conexion->error;
             $conexion->close();
         }
     }
+
 }
 ?>

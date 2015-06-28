@@ -1,5 +1,6 @@
 <?php
-	include_once '../datos/config.php';
+    include_once '../datos/config.php';
+    include_once '../datos/datosPersona.php';
 	include_once 'negoCuentaBanco.php';
 
 	class NegoPersona{
@@ -99,7 +100,25 @@
 		}
 		public function setDireccionX($direccionX){
 			$this->direccionX = $direccionX;
-		}	
+		}
+        
+        public function crearPersona() {
+            
+            return datosPersona::crearPersona($this->id,$this->nombres,$this->apellidos,$this->profesion,$this->telefono,$this->ciudad,$this->pais,$this->cargo);
+        }
+        
+        public function actualizarPersona() {
+            
+            return datosPersona::actualizarPersona($this->id,$this->nombres,$this->apellidos,$this->profesion,$this->telefono,$this->ciudad,$this->pais,$this->cargo);
+        }
+        
+        public function buscarPersona() {
+            
+            if($this->id == null)
+                return "El id de la persona esta vacio";
+            else
+                return datosPersona::buscarPersona($this->id);
+        }
 		
 	}
 ?>

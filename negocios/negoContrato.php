@@ -1,5 +1,5 @@
 <?php
-	include_once '../datos/config.php';
+    include_once '../datos/config.php';
 	include_once '../datos/datosContrato.php';
 	include_once 'negoPersona.php';
 	include_once 'negoEmpresa.php';
@@ -28,7 +28,7 @@
 		private $fechaElaboracionX;
 		private $duracionX;
 
-		function __construct($numero=null,$fechaInicio=null,$fechaFin=null,$consultoria=null,$monto=null,$pais=null,$fechaFirma=null,$link=null,$usuario=null,$persona=null,$persona=null,$empresa=null,$proyecto=null,$descripcionX=null,$obligacionesAdicionalesX=null,$IVAX=null,$IRX=null,$gastosX=null,$formaPagoX=null,$fechaElaboracionX=null,$duracionX=null){
+		function __construct($numero=null,$fechaInicio=null,$fechaFin=null,$consultoria=null,$monto=null,$pais=null,$fechaFirma=null,$link=null,$usuario=null,$persona=null,$empresa=null,$proyecto=null,$descripcionX=null,$obligacionesAdicionalesX=null,$IVAX=null,$IRX=null,$gastosX=null,$formaPagoX=null,$fechaElaboracionX=null,$duracionX=null){
 
 			$parametros = get_defined_vars();
 			$variables = get_class_vars(__CLASS__);
@@ -37,9 +37,9 @@
 				if($valor == null)
 					break;
 				else{
-					foreach ($variables as $nombre_variable => $default) {				
+					foreach ($variables as $nombre_variable => $default) {		
 						if($nombre_variable==$nombre_parametro){
-							$this->$nombre_variable = $valor;
+                            $this->$nombre_variable = $valor;
 							break;
 						}
 					}
@@ -168,7 +168,45 @@
 			$this->duracionX = $duracionX;
 		}
 		public function crearContrato(){
-			datosContrato::crearContrato();
-		}
+            if(!is_object($this->persona->buscarPersona()))
+                $this->persona->crearPersona();
+            if(!is_null($this->empresa) && !is_object($this->empresa->buscarEmpresa()))
+                $this->empresa->crearEmpresa();
+            if(!is_object($this->proyecto->buscarProyectos()))
+                $this->proyecto->crearProyecto ();
+            if(!is_object($this->usuario->buscarUsuario()))
+                $this->usuario->crearUsuario();
+            
+            return datosContrato::crearContrato($this->fechaInicio,$this->fecchaFin,$this->fechaFin,$this->consultoria,$this->monto,$this->pais,$this->usuario->getId(),$this->persona->getId(),$this->proyecto->getId(),$this->fechaFirma,$this->empresa->getRuc(),$this->link);
+		  }
+    
+        public function buscarContratoProyecto(){
+            
+            if($this->proyecto == null)
+                return "El nombre del proyecto esta vacio";
+            else
+                return datosContrato::buscarContratoProyecto($this->proyecto);
+        }
+        
+        public function buscarContratoNumero(){
+            
+            if($this->numero == null)
+                return "El numero de contrato esta vacio";
+            else
+                return datosContrato::buscarContratoNumero($this->numero);
+        }
+        
+        public function buscarContratoPersona(){
+            
+            if($this->persona->getId == null)
+                return "El id de la persona esta vacio";
+            else
+                return datosContrato::buscarContratoPersona($this->persona);
+        }
+        
+        public function buscarContratos() {
+            
+            return datosContrato::buscarContratos();
+        }
 	}
 ?>

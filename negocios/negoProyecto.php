@@ -1,5 +1,6 @@
 <?php
-	include_once '../datos/config.php';
+    include_once '../datos/config.php';
+	include_once '../datos/datosProyecto.php';
 	include_once 'negoArea.php';
 
 	class NegoProyecto{
@@ -44,5 +45,20 @@
 		public function setArea($area){
 			$this->area = $area;
 		}
-	}
+        
+        public function crearProyecto() {
+            
+            return datosProyecto::crearProyecto($this->nombre,$this->area);
+        }
+        
+        public function actualizarProyecto() {
+            
+            return datosProyecto::actualizarProyecto($this->nombre,$this->area,$this->id);
+        }
+        
+        public function buscarProyectos(){
+            
+            return datosProyecto::buscarProyectos($this->id);
+        }            
+	}            
 ?>

@@ -7,7 +7,7 @@ class datosArea {
         
         $sql = "INSERT INTO T_AREA(A_NOMBRE) VALUES ('".$nombre."')";
         
-        self::ejecutarConsulta($sql);
+        return self::ejecutarConsulta($sql);
     }
     
     public static function buscarArea($id=null) {
@@ -36,7 +36,7 @@ class datosArea {
             $conexion->close();
             return $objeto;
         }else{
-            echo "Error en la consulta: " . $conexion->error;
+            return "Error en la consulta: " . $conexion->error;
             $conexion->close();
         }
     }

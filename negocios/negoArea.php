@@ -1,5 +1,5 @@
 <?php
-	include_once '../datos/config.php';
+    include_once '../datos/config.php';
 	include_once '../datos/datosArea.php';
 
 	class NegoArea{
@@ -38,10 +38,13 @@
 			$this->nombre = $nombre;
 		}
 		public function crearArea(){
-			datosArea::crearArea($this->nombre);
+            if($this->nombre == null)
+                return "El nombre del Area esta vacío";
+            else
+                return datosArea::crearArea($this->nombre);
 		}
 		public function buscarArea(){
-			echo (datosArea::buscarArea($this->id));
+			return datosArea::buscarArea($this->id);
 		}
 	}
 ?>

@@ -1,5 +1,6 @@
 <?php
-	include_once '../datos/config.php';
+    include_once '../datos/config.php';
+	include_once '../datos/datosEnmienda.php';
 	include_once 'negoContrato.php';
 	include_once 'negoUsuario.php';
 
@@ -7,6 +8,7 @@
 		private $id;
 		private $numero;
 		private $fechaFin;
+        private $fechaFirma;
 		private $consultoria;
 		private $monto;
 		private $link;
@@ -55,6 +57,12 @@
 		}
 		public function setFechaFin($fechaFin){
 			$this->fechaFin = $fechaFin;
+		}
+        public function getFechaFirma(){
+			return $this->fechaFirma;
+		}
+		public function setFechaFirma($fechaFirma){
+			$this->fechaFirma = $fechaFirma;
 		}
 		public function getConsultoria(){
 			return $this->consultoria;
@@ -122,5 +130,27 @@
 		public function setFechaElaboracionX($fechaElaboracionX){
 			$this->fechaElaboracionX = $fechaElaboracionX;
 		}
+        
+        public function crearEnmienda() {
+            
+            return datosEnmienda::crearEnmienda($this->numero,$this->fechaFin,$this->consultoria,$this->monto,$this->fechaFirma,$this->usuario,$this->contrato,$this->link);
 	}
+        
+        public function totalEnmiendas() {
+            
+            if($this->contrato == null)
+                return "El numero de contrato esta vacio";
+            else
+                return datosEnmienda::totalEnmiendas($this->contrato);
+        }
+        
+        public function datosEnmiendasContrato() {
+            
+            if($this->contrato == null)
+                return "El numero de contrato esta vacio";
+            else
+                return datosEnmienda::datosEnmiendasContrato($this->nombre);
+        }
+    }
+        
 ?>

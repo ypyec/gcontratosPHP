@@ -1,5 +1,4 @@
 <?php
-	include_once '../datos/config.php';
 	
 	class NegoCuentaBanco{
 		private $numero;

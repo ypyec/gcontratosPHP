@@ -1,5 +1,4 @@
 <?php
-include_once "config.php";
 
 class datosEnmienda {
  
@@ -7,7 +6,7 @@ class datosEnmienda {
         
         $sql = "INSERT INTO T_ENMIENDA (ENM_NUMERO, ENM_FECHA_FIN, ENM_CONSULTORIA, ENM_MONTO, ENM_FECHA_FIRMA, USU_ID, CON_ID, ENM_LINK) VALUES ('".$numero."','".$fechaFin."','".$consultoria."','".$monto."','".$fechaFirma."','".$usu_ID."','".$con_Numero."','".(($link==null)?'null':"'".$link."'")."')";
         
-        self::ejecutarConsulta($sql);
+        return self::ejecutarConsulta($sql);
     }
     
     public static function totalEnmiendas($con_Numero) {
