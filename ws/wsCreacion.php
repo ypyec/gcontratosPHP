@@ -1,180 +1,129 @@
 <?php
-	
-	include_once '../negocios/negoArea.php';
-    include_once '../negocios/negoContrato.php';
-    include_once '../negocios/negoCuentaBanco.php';
-    include_once '../negocios/negoEmpresa.php';
-    include_once '../negocios/negoEnmienda.php';
-    include_once '../negocios/negoPersona.php';
-    include_once '../negocios/negoUsuario.php';
-$accion = $_POST['accion'];
-switch($accion) {
-    
+
+include_once '../negocios/negoArea.php';
+include_once '../negocios/negoContrato.php';
+include_once '../negocios/negoCuentaBanco.php';
+include_once '../negocios/negoEmpresa.php';
+include_once '../negocios/negoEnmienda.php';
+include_once '../negocios/negoPersona.php';
+include_once '../negocios/negoUsuario.php';
+foreach ($_POST as $key => $value)
+    ${$key} = $value;
+switch ($accion)
+{
+
     case 'crearArea':
-        $id = isset($_POST['idArea'])?$_POST['id']:null;
-        $nombre = $_POST['nombreArea'];
-        $area = new negoArea($id,$nombre);
+        $area = new negoArea($idArea, $nombreArea);
         $respuesta = $area->crearArea();
         break;
-    
-    case 'crearContrato':
-    //cambiar a isset para comprobar q me llegan los posts
-        $parametroEmpresa = new Empresa($_POST['ruc'],$_POST['nombreEmpresa'],$_POST['especializacionEmpresa'],$_POST['telefonoEmpresa'],$_POST['ciudadEmpresa'],$_POST['paisEmpresa'],$_POST['cargoEmpresa'],$_POST['persona'],$_POST['idCuentaXEmpresa'],$_POST['experienciaXEmpresa'],$_POST['direccionXEmpresa']);
-        //cambiar a isset los datos que no son necesarios desde [Profesion]
-        $parametroPersona = new negoPersona($_POST['idPersona'],$_POST['nombresPersona'],$_POST['apellidosPersona'],$_POST['profesionPersona'],$_POST['telefonoPersona'],$_POST['ciudadPersona'],$_POST['paisPersona'],$_POST['cargoPersona'],$_POST['idCuentaXPersona'],$_POST['experienciaXPersona'],$_POST['direccionXPersona']);
-    
-        $parametroProyecto = new negoProyecto($_POST['id'],$_POST['nombreProyecto'],$_POST['area']);
-    
-        $parametroUsuario = new negoUsuario($_POST['id'],$_POST['nombreArea'],$_POST['email']);
-    
-        $numero = $_POST['numero'];
-        $fechaInicio = $_POST['fechaInicio'];
-        $fechaFin = $_POST['fechaFin'];
-        $consultoria = $_POST['consultoria'];
-        $monto = $_POST['monto'];
-        $pais = $_POST['paisContrato'];
-        $fechaFirma = $_POST['fechaFirma'];
-        $link = $_POST['link'];
-        $usuario = $parametroUsuario;
-        $persona = $parametroPersona;
-        $empresa = $parametroEmpresa;
-        $proyecto = $parametroProyecto;
-        $descripcionX = $_POST['descripcionX'];
-        $obligacionesAdicionalesX = $_POST['obligacionesAdicionalesX'];
-        $IVAX = $_POST['IVAX'];
-        $IRX = $_POST['IRX'];
-        $gastosX = $_POST['gastosX'];
-        $formaPagoX = $_POST['formaPagoX'];
-        $fechaElaboracionX = $_POST['fechaElaboracionX'];
-        $duracionX = $_POST['duracionX'];
-        $contrato = new negoContrato($numero,$fechaInicio,$fechaFin,$consultoria,$monto,$pais,$fechaFirma,$link,$parametroUsuario,$parametroPersona,$parametroEmpresa,$parametroProyecto,$descripcionX,$obligacionesAdicionalesX,$IVAX,$IRX,$gastosX,$formaPagoX,$fechaElaboracionX,$duracionX);
+
+    case 'crearContratoPersona':
+        $parametroPersona = new negoPersona($idPersona, $nombresPersona, $apellidosPersona,
+            $profesionPersona, $telefonoPersona, $ciudadPersona, $paisPersona, $cargoPersona,
+            $idCuentaXPersona, $experienciaXPersona, $direccionXPersona);
+
+        $parametroProyecto = new negoProyecto($idProyecto, $nombreProyecto, $idArea);
+
+        $parametroUsuario = new negoUsuario($idUsuario, $nombreArea, $emailUsuario);
+
+        $contrato = new negoContrato($numeroContrato, $fechaInicioContrato, $fechaFinContrato,
+            $consultoriaContrato, $montoContrato, $paisContrato, $fechaFirmaContrato, $link,
+            $parametroUsuario, $parametroPersona, $parametroEmpresa, $parametroProyecto, $descripcionXContrato,
+            $obligacionesAdicionalesXContrato, $IVAXContrato, $IRXContrato, $gastosXContrato,
+            $formaPagoXContrato, $fechaElaboracionXContrato, $duracionXContrato);
         $respuesta = $contrato->crearContrato();
         break;
-    
+
+    case 'crearContratoEmpresa':
+        $parametroPersona = new negoPersona($idPersona, $nombresPersona, $apellidosPersona,
+            $profesionPersona, $telefonoPersona, $ciudadPersona, $paisPersona, $cargoPersona,
+            $idCuentaXPersona, $experienciaXPersona, $direccionXPersona);
+
+        $parametroEmpresa = new Empresa($rucEmpresa, $nombreEmpresa, $especializacionEmpresa,
+            $telefonoEmpresa, $ciudadEmpresa, $paisEmpresa, $cargoEmpresa, $parametroPersona,
+            $idCuentaXEmpresa, $experienciaXEmpresa, $direccionXEmpresa);
+
+        $parametroProyecto = new negoProyecto($idProyecto, $nombreProyecto, $idArea);
+
+        $parametroUsuario = new negoUsuario($idUsuario, $nombreUsuario, $emailUsuario);
+
+        $contrato = new negoContrato($numeroContrato, $fechaInicioContrato, $fechaFinContrato,
+            $consultoriaContrato, $montoContrato, $paisContrato, $fechaFirmaContrato, $link,
+            $parametroUsuario, $parametroPersona, $parametroEmpresa, $parametroProyecto, $descripcionXContrato,
+            $obligacionesAdicionalesXContrato, $IVAXContrato, $IRXContrato, $gastosXContrato,
+            $formaPagoXContrato, $fechaElaboracionXContrato, $duracionXContrato);
+        $respuesta = $contrato->crearContrato();
+        break;
+
     case 'crearEmpresa':
-        $parametroPersona = new negoPersona($_POST['id'],$_POST['nombres'],$_POST['apellidos'],$_POST['profesion'],$_POST['telefonoPersona'],$_POST['ciudadPersona'],$_POST['paisPersona'],$_POST['cargoPersona'],$_POST['idCuentaXPersona'],$_POST['experienciaXPersona'],$_POST['direccionXPersona']);
-    
-        $ruc = $_POST['ruc'];
-        $nombre = $_POST['nombre'];
-        $especializacion = $_POST['especializacion'];
-        $telefono = $_POST['telefono'];
-        $ciudad = $_POST['ciudad'];
-        $pais = $_POST['pais'];
-        $cargo = $_POST['cargo'];
-        $persona = $parametroPersona;
-        $idCuentaX = $_POST['idCuentaXEmpresa'];
-        $experienciaX = $_POST['experienciaXEmpresa'];
-        $direccionX = $_POST['direccionXEmpresa'];
-        $empresa = new negoEmpresa($ruc,$nombre,$especializacion,$telefono,$ciudad,$pais,$cargo,$persona,$idCuentaX,$experienciaX,$direccionX);
+        $parametroPersona = new negoPersona($idPersona, $nombresPersona, $apellidosPersona,
+            $profesionPersona, $telefonoPersona, $ciudadPersona, $paisPersona, $cargoPersona,
+            $idCuentaXPersona, $experienciaXPersona, $direccionXPersona);
+
+        $empresa = new negoEmpresa($ruc, $nombreEmpresa, $especializacionEmpresa, $telefonoEmpresa,
+            $ciudadEmpresa, $paisEmpresa, $cargoEmpresa, $parametroPersona, $idCuentaXEmpresa,
+            $experienciaXEmpresa, $direccionXEmpresa);
         $respuesta = $empresa->crearEmpresa();
         break;
-    
+
     case 'actualizarEmpresa':
-        $ruc = $_POST['ruc'];
-        $nombre = $_POST['nombre'];
-        $especializacion = $_POST['especializacion'];
-        $telefono = $_POST['telefono'];
-        $ciudad = $_POST['ciudad'];
-        $pais = $_POST['pais'];
-        $cargo = $_POST['cargo'];
-        $persona = $_POST['persona'];
-        $idCuentaX = $_POST['idCuentaX'];
-        $experienciaX = $_POST['experienciaX'];
-        $direccionX = $_POST['direccionX'];
-        $empresa = new negoEmpresa($ruc,$nombre,$especializacion,$telefono,$ciudad,$pais,$cargo,$persona,$idCuentaX,$experienciaX,$direccionX);
+        $parametroPersona = new NegoPersona($idPersona, $nombresPersona, $apellidosPersona,
+            $profesionPersona, $telefonoPersona, $ciudadPersona, $paisPersona, $cargoPersona,
+            $idCuentaXPersona, $experienciaXPersona, $direccionXPersona);
+
+        $empresa = new negoEmpresa($rucEmpresa, $nombreEmpresa, $especializacionEmpresa,
+            $telefonoEmpresa, $ciudadEmpresa, $paisEmpresa, $cargoEmpresa, $parametroPersona,
+            $idCuentaXEmpresa, $experienciaXEmpresa, $direccionXEmpresa);
         $respuesta = $empresa->actualizarEmpresa();
         break;
-    
+
     case 'crearEnmienda':
-        $parametroUsuario = new negoUsuario($_POST['id'],$_POST['nombreArea'],$_POST['email']);
-    
-        $id = $_POST['id'];
-        $numero = $_POST['numero'];
-        $fechaFin = $_POST['fechaFin'];
-        $consultoria = $_POST['consultoria'];
-        $monto = $_POST['monto'];
-        $link = $_POST['link'];
-        $usuario = $parametroUsuario;
-        $contrato = $_POST['contrato'];
-        $descripcionX = $_POST['descripcionX'];
-        $IVAX = $_POST['IVAX'];
-        $IRX = $_POST['IRX'];
-        $gastosX = $_POST['gastosX'];
-        $formaPagoX = $_POST['formaPagoX'];
-        $fechaElaboracionX = $_POST['fechaElaboracionX'];
-        $enmienda = new negoEnmienda($id,$numero,$fechaFin,$consultoria,$monto,$link,$usuario,$contrato,$descripcionX,$IVAX,$IRX,$gastosX,$formaPagoX,$fechaElaboracionX);
+        $parametroUsuario = new negoUsuario($idUsuario, $nombreArea, $emailUsuario);
+
+        $enmienda = new negoEnmienda($idEnmienda, $numeroEnmienda, $fechaFinEnmienda, $consultoriaEnmienda,
+            $montoEnmienda, $link, $parametroUsuario, $contratoEnmienda, $descripcionXEnmienda,
+            $IVAXEnmienda, $IRXEnmienda, $gastosXEnmienda, $formaPagoXEnmienda, $fechaElaboracionXEnmienda);
         $respuesta = $enmienda->crearEnmienda();
         break;
-    
+
     case 'crearPersona':
-        $id = $_POST['id'];
-        $nombres = $_POST['nombres'];
-        $apellidos = $_POST['apellidos'];
-        $profesion = $_POST['profesion'];
-        $telefono = $_POST['telefono'];
-        $ciudad = $_POST['ciudad'];
-        $pais = $_POST['pais'];
-        $cargo = $_POST['cargo'];
-        $idCuentaX = $_POST['idCuentaX'];
-        $experienciaX = $_POST['experienciaX'];
-        $direccionX = $_POST['direccionX'];
-        $persona = new negoPersona($id,$nombres,$apellidos,$profesion,$telefono,$ciudad,$pais,$cargo,$idCuentaX,$experienciaX,$direccionX);
+        $persona = new negoPersona($idPersona, $nombresPersona, $apellidosPersona, $profesionPersona,
+            $telefonoPersona, $ciudadPersona, $paisPersona, $cargoPersona, $idCuentaXPersona,
+            $experienciaXPersona, $direccionXPersona);
         $respuesta = $persona->crearPersona();
         break;
-    
+
     case 'actualizarPersona':
-        $id = $_POST['id'];
-        $nombres = $_POST['nombres'];
-        $apellidos = $_POST['apellidos'];
-        $profesion = $_POST['profesion'];
-        $telefono = $_POST['telefono'];
-        $ciudad = $_POST['ciudad'];
-        $pais = $_POST['pais'];
-        $cargo = $_POST['cargo'];
-        $idCuentaX = $_POST['idCuentaX'];
-        $experienciaX = $_POST['experienciaX'];
-        $direccionX = $_POST['direccionX'];
-        $persona = new negoPersona($id,$nombres,$apellidos,$profesion,$telefono,$ciudad,$pais,$cargo,$idCuentaX,$experienciaX,$direccionX);
+        $persona = new negoPersona($idPersona, $nombresPersona, $apellidosPersona, $profesionPersona,
+            $telefonoPersona, $ciudadPersona, $paisPersona, $cargoPersona, $idCuentaXPersona,
+            $experienciaXPersona, $direccionXPersona);
         $respuesta = $persona->actualizarPersona();
         break;
-    
+
     case 'crearProyecto':
-        $parametroArea = new negoArea($_POST['id'],$_POST['nombre']);
-        $id = $_POST['id'];
-        $nombre = $_POST['nombre'];
-        $area = $_POST['area'];
-        $proyecto = new negoProyecto($id,$nombre,$area);
+        $parametroArea = new negoArea($idArea, $nombreArea);
+        $proyecto = new negoProyecto($idProyecto, $nombreProyecto, $parametroArea);
         $respuesta = $proyecto->crearProyecto();
         break;
-    
+
     case 'actualizarProyecto':
-        $id = $_POST['id'];
-        $nombre = $_POST['nombre'];
-        $area = $_POST['area'];
-        $proyecto = new negoProyecto($id,$nombre,$area);
+        $proyecto = new negoProyecto($idProyecto, $nombreProyecto, $idArea);
         $respuesta = $proyecto->actualizarProyecto();
         break;
-    
+
     case 'crearUsuario':
-        $id = $_POST['id'];
-        $nombre = $_POST['id'];
-        $email = $_POST['id'];
-        $usuario = new negoUsuario($id,$nombre,$email);
+        $usuario = new negoUsuario($idUsuario, $nombreUsuario, $emailUsuario);
         $respuesta = $usuario->crearUsuario();
         break;
-    
+
     case 'actualizarUsuario':
-    
-        $id = $_POST['id'];
-        $nombre = $_POST['id'];
-        $email = $_POST['id'];
-        $usuario = new negoUsuario($id,$nombre,$email);
+        $usuario = new negoUsuario($idUsuario, $nombreUsuario, $emailUsuario);
         $respuesta = $usuario->actualizarUsuario();
         break;
-    
+
     default:
         $respuesta = "Error no existe la accion especificada";
-        break;        
+        break;
 }
 
 echo json_encode($respuesta);
