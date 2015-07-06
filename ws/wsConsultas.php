@@ -18,7 +18,7 @@ switch ($accion)
 
     case 'buscarProyectos':
         $proyecto = new negoProyecto();
-        $respuesta = $proyecto->buscarProyecto();
+        $respuesta = $proyecto->buscarProyectos();
         break;
 
     case 'buscarEmpresa':

@@ -69,7 +69,7 @@ class NegoProyecto
     public function buscarProyectos()
     {
 
-        return datosProyecto::buscarProyectos($this->id);
+        return datosProyecto::buscarProyecto($this->id);
     }
 }
 

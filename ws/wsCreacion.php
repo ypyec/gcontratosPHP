@@ -18,13 +18,15 @@ switch ($accion)
         break;
 
     case 'crearContratoPersona':
+        $parametroCuenta = new NegoCuentaBanco($numeroCuenta, $nombreBanco, $tipoCuenta, $swift);
+    
         $parametroPersona = new negoPersona($idPersona, $nombresPersona, $apellidosPersona,
             $profesionPersona, $telefonoPersona, $ciudadPersona, $paisPersona, $cargoPersona,
-            $idCuentaXPersona, $experienciaXPersona, $direccionXPersona);
+            $parametroCuenta, $experienciaXPersona, $direccionXPersona);
 
         $parametroProyecto = new negoProyecto($idProyecto, $nombreProyecto, $idArea);
 
-        $parametroUsuario = new negoUsuario($idUsuario, $nombreArea, $emailUsuario);
+        $parametroUsuario = new negoUsuario($idUsuario, $nombreUsuario, $emailUsuario);
 
         $contrato = new negoContrato($numeroContrato, $fechaInicioContrato, $fechaFinContrato,
             $consultoriaContrato, $montoContrato, $paisContrato, $fechaFirmaContrato, $link,
@@ -35,9 +37,11 @@ switch ($accion)
         break;
 
     case 'crearContratoEmpresa':
+        $parametroCuenta = new NegoCuentaBanco($numeroCuenta, $nombreBanco, $tipoCuenta, $swift);
+    
         $parametroPersona = new negoPersona($idPersona, $nombresPersona, $apellidosPersona,
             $profesionPersona, $telefonoPersona, $ciudadPersona, $paisPersona, $cargoPersona,
-            $idCuentaXPersona, $experienciaXPersona, $direccionXPersona);
+            $parametroCuenta, $experienciaXPersona, $direccionXPersona);
 
         $parametroEmpresa = new Empresa($rucEmpresa, $nombreEmpresa, $especializacionEmpresa,
             $telefonoEmpresa, $ciudadEmpresa, $paisEmpresa, $cargoEmpresa, $parametroPersona,
