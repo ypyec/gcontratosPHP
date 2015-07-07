@@ -3,32 +3,49 @@
 require '../ws/fpdf17/fpdf.php';
 class PDF extends FPDF
 {
-    function Titulo($file, $numero, $titulo)
+    function Header()
     {
-        // Read text file
-        $txt = file_get_contents($file);
-        $txt = str_replace(['$numero', '$titulo'], [$numero, $titulo], $txt);
-        // Arial 12
-        $this->SetFont('Arial', '', 12);
+        global $title;
+
+        // Arial bold 15
+        $this->SetFont('Helvetica', 'BU', 11);
+        // Calculate width of title and position
+        $w = $this->GetStringWidth($title) + 6;
+        $this->SetX((210 - $w) / 2);
         // Title
-        $this->MultiCell(0, 6, $txt, 0, 'C');
+        $this->Cell($w, 9, $title, 1, 1, 'C', true);
         // Line break
-        $this->Ln(1);
+        $this->Ln(10);
     }
 
-    function Cuerpo($file, $nombre, $apellido, $idPersona, $profesionPersona, $XExperiencaPersona,
-        $consultoriaPersona, $xDescripcionPersona, $xObligacionesAdicionalesPersona, $xDuracionPersona,
-        $fechaInicio, $fechaFin, $montoPersona, $xIva, $xIr, $paisContrato, $xGastos, $xFormaPago, $nombreBanco, $numeroCuenta, $tipoCuenta, $swift, $XDireccionPersona, $ciudadPersona, $paisPersona)
+    function Footer()
+    {
+        // Position at 1.5 cm from bottom
+        $this->SetY(-15);
+        // Arial italic 8
+        $this->SetFont('Arial', 'I', 8);
+        // Text color in gray
+        $this->SetTextColor(128);
+        // Page number
+        $this->Cell(0, 10, 'Page ' . $this->PageNo(), 0, 0, 'C');
+    }
+
+    function ChapterTitle($num, $label)
+    {
+        // Arial 12
+        $this->SetFont('Arial', '', 12);
+        // Background color
+        $this->SetFillColor(200, 220, 255);
+        // Title
+        $this->Cell(0, 6, "Chapter $num : $label", 0, 1, 'L', true);
+        // Line break
+        $this->Ln(4);
+    }
+
+    function ChapterBody($file)
     {
         // Read text file
         $txt = file_get_contents($file);
-        $txt = str_replace(['persona.Nombres', 'persona.Apellidos', 'persona.Id',
-            'persona.Profesion', 'persona.XExperienca', 'consultoriaPersona', 'xDescripcion',
-            'xObligacionesAdicionales', 'xDuracion', 'fechaInicio', 'fechaFin',
-            'montoPersona', 'xIva', 'xIr', 'paisContrato', 'xGastos','xFormaPago', 'cuenta.NombreBanco', 'cuenta.Numero', 'cuenta.Tipo', 'cuenta.Swift', 'persona.XDireccion', 'persona.Ciudad', 'persona.Pais'], [$nombre, $apellido,
-            $idPersona, $profesionPersona, $XExperiencaPersona, $consultoriaPersona, $xDescripcionPersona,
-            $xObligacionesAdicionalesPersona, $xDuracionPersona, $fechaInicio, $fechaFin, $montoPersona,
-            $xIva, $xIr, $paisContrato, $xGastos, $xFormaPago, $nombreBanco, $numeroCuenta, $tipoCuenta, $swift, $XDireccionPersona, $ciudadPersona, $paisPersona], $txt);
         // Times 12
         $this->SetFont('Times', '', 12);
         // Output justified text
@@ -40,16 +57,20 @@ class PDF extends FPDF
         $this->Cell(0, 5, '(end of excerpt)');
     }
 
-    function ImprimirPDF($archivoTitulo, $numeroContrato, $tituloContrato)
+    function PrintChapter($num, $title, $file)
     {
         $this->AddPage();
-        $this->Titulo($archivoTitulo, $numeroContrato, $tituloContrato);
-        $this->Cuerpo($archivoCuerpo);
+        $this->ChapterTitle($num, $title);
+        $this->ChapterBody($file);
     }
 }
 //$pdf->Output('../pdf/contrato.pdf','F');
 $pdf = new PDF();
-$pdf->PrintPDF(2, 'THE PROS AND CONS', '../pdf/Hola.txt');
+$title = '20000 Leagues Under the Seas';
+$pdf->SetTitle($title);
+$pdf->SetAuthor('Jules Verne');
+$pdf->PrintChapter(1, 'A RUNAWAY REEF', '../pdf/contrato de prestacion de servicios1.txt');
+$pdf->PrintChapter(2, 'THE PROS AND CONS', '../pdf/Hola.txt');
 $pdf->Output();
 
 ?>
@@ -59,6 +80,12 @@ agregarLineasEnBlanco(document, 4);
 private static Font titulo = new Font(Font.FontFamily.HELVETICA, 11, Font.BOLD | Font.UNDERLINE);
         private static Font subtitulo = new Font(Font.FontFamily.HELVETICA, 11, Font.BOLD);
         private static Font normal = new Font(Font.FontFamily.HELVETICA, 11);
+		
+		    
+                    
+                    
+                    
+                    
 ENMIENDA
 
 private static Font titulo = new Font(Font.FontFamily.HELVETICA, 11, Font.BOLD | Font.UNDERLINE);

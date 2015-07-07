@@ -43,7 +43,7 @@ class datosContrato
     public static function buscarContratoPersona($id_persona)
     {
 
-        $sql = "SELECT * FROM vContratoCompleta WHERE 'ID Contratista'='" . $id_persona .
+        $sql = "SELECT * FROM vContratoCompleta WHERE `ID Contratista`='" . $id_persona .
             "'";
 
         return self::ejecutarConsulta($sql);
@@ -62,7 +62,7 @@ class datosContrato
 
         $conexion = abrir_conexion();
         $resultado = $conexion->query($sql);
-
+echo $sql;
         if ($resultado === true)
         {
             $conexion->close();

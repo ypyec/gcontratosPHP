@@ -3,32 +3,24 @@
 require '../ws/fpdf17/fpdf.php';
 class PDF extends FPDF
 {
-    function Titulo($file, $numero, $titulo)
+    function Title($file,$numero, $titulo)
     {
+        $this->AddPage();
         // Read text file
         $txt = file_get_contents($file);
-        $txt = str_replace(['$numero', '$titulo'], [$numero, $titulo], $txt);
+        $txt = str_replace(['$numero','$titulo'],[$numero,$titulo],$txt);
         // Arial 12
         $this->SetFont('Arial', '', 12);
         // Title
-        $this->MultiCell(0, 6, $txt, 0, 'C');
+        $this->MultiCell(0, 6, $txt,0,'C');
         // Line break
         $this->Ln(1);
     }
 
-    function Cuerpo($file, $nombre, $apellido, $idPersona, $profesionPersona, $XExperiencaPersona,
-        $consultoriaPersona, $xDescripcionPersona, $xObligacionesAdicionalesPersona, $xDuracionPersona,
-        $fechaInicio, $fechaFin, $montoPersona, $xIva, $xIr, $paisContrato, $xGastos, $xFormaPago, $nombreBanco, $numeroCuenta, $tipoCuenta, $swift, $XDireccionPersona, $ciudadPersona, $paisPersona)
+    function ChapterBody($file)
     {
         // Read text file
         $txt = file_get_contents($file);
-        $txt = str_replace(['persona.Nombres', 'persona.Apellidos', 'persona.Id',
-            'persona.Profesion', 'persona.XExperienca', 'consultoriaPersona', 'xDescripcion',
-            'xObligacionesAdicionales', 'xDuracion', 'fechaInicio', 'fechaFin',
-            'montoPersona', 'xIva', 'xIr', 'paisContrato', 'xGastos','xFormaPago', 'cuenta.NombreBanco', 'cuenta.Numero', 'cuenta.Tipo', 'cuenta.Swift', 'persona.XDireccion', 'persona.Ciudad', 'persona.Pais'], [$nombre, $apellido,
-            $idPersona, $profesionPersona, $XExperiencaPersona, $consultoriaPersona, $xDescripcionPersona,
-            $xObligacionesAdicionalesPersona, $xDuracionPersona, $fechaInicio, $fechaFin, $montoPersona,
-            $xIva, $xIr, $paisContrato, $xGastos, $xFormaPago, $nombreBanco, $numeroCuenta, $tipoCuenta, $swift, $XDireccionPersona, $ciudadPersona, $paisPersona], $txt);
         // Times 12
         $this->SetFont('Times', '', 12);
         // Output justified text
@@ -40,16 +32,17 @@ class PDF extends FPDF
         $this->Cell(0, 5, '(end of excerpt)');
     }
 
-    function ImprimirPDF($archivoTitulo, $numeroContrato, $tituloContrato)
+    function PrintChapter($num, $title, $file)
     {
         $this->AddPage();
-        $this->Titulo($archivoTitulo, $numeroContrato, $tituloContrato);
-        $this->Cuerpo($archivoCuerpo);
+        $this->ChapterTitle($num, $title);
+        $this->ChapterBody($file);
     }
 }
 //$pdf->Output('../pdf/contrato.pdf','F');
 $pdf = new PDF();
-$pdf->PrintPDF(2, 'THE PROS AND CONS', '../pdf/Hola.txt');
+$pdf->Title('../pdf/titulo.txt',1 ,'A RUNAWAY REEF');
+//$pdf->PrintChapter(2, 'THE PROS AND CONS', '../pdf/Hola.txt');
 $pdf->Output();
 
 ?>

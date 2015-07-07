@@ -128,7 +128,7 @@ class NegoContrato
     }
     public function getPersona()
     {
-        return $this->persona->getId();
+        return $this->persona;
     }
     public function setPersona($persona)
     {
@@ -216,13 +216,13 @@ class NegoContrato
     }
     public function crearContrato()
     {
-        if (!is_object($this->persona->buscarPersona()))
+        if (!is_array($this->persona->buscarPersona()))
             $this->persona->crearPersona();
-        if (!is_null($this->empresa) && !is_object($this->empresa->buscarEmpresa()))
+        if (!is_null($this->empresa) && !is_array($this->empresa->buscarEmpresa()))
             $this->empresa->crearEmpresa();
-        if (!is_object($this->proyecto->buscarProyectos()))
+        if (!is_array($this->proyecto->buscarProyectos()))
             $this->proyecto->crearProyecto();
-        if (!is_object($this->usuario->buscarUsuario()))
+        if (!is_array($this->usuario->buscarUsuario()))
             $this->usuario->crearUsuario();
 
         return datosContrato::crearContrato($this->fechaInicio, $this->fechaFin, $this->
@@ -252,10 +252,10 @@ class NegoContrato
     public function buscarContratoPersona()
     {
 
-        if ($this->persona->getId == null)
+        if ($this->persona->getId() == null)
             return "El id de la persona esta vacio";
         else
-            return datosContrato::buscarContratoPersona($this->persona);
+            return datosContrato::buscarContratoPersona($this->persona->getId());
     }
 
     public function buscarContratos()

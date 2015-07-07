@@ -56,7 +56,7 @@ class NegoProyecto
 
     public function crearProyecto()
     {
-        if (!is_object($this->area->buscarArea()))
+        if (!is_array($this->area->buscarArea()))
             $this->area->crearArea();
         return datosProyecto::crearProyecto($this->nombre, $this->area->getId());
     }
