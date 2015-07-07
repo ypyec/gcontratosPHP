@@ -71,7 +71,7 @@ class datosContrato
         {
             while ($fila = $resultado->fetch_object())
             {
-                $objeto = $fila;
+                $objeto[] = $fila;
             }
             $conexion->close();
             return $objeto;

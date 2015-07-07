@@ -46,7 +46,7 @@ class datosPersona
             return $resultado;
         } elseif ($conexion->error == "" && $resultado->num_rows > 0) {
             while ($fila = $resultado->fetch_object())
-                $objeto = $fila;
+                $objeto[] = $fila;
             $conexion->close();
             return $objeto;
         } else {
