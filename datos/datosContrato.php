@@ -62,7 +62,6 @@ class datosContrato
 
         $conexion = abrir_conexion();
         $resultado = $conexion->query($sql);
-echo $sql;
         if ($resultado === true)
         {
             $conexion->close();

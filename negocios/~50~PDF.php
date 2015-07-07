@@ -49,8 +49,17 @@ class PDF extends FPDF
 }
 //$pdf->Output('../pdf/contrato.pdf','F');
 $pdf = new PDF();
-
-$pdf->PrintPDF(2, 'THE PROS AND CONS', '../pdf/Hola.txt');
+$pdf->AddPage();
+$pdf->Cell(40,5,' ','LTR',0,'L',0);   // empty cell with left,top, and right borders
+$pdf->Cell(50,5,'Words Here',1,0,'L',0);
+$pdf->Cell(50,5,'Words Here',1,0,'L',0);
+$pdf->Cell(40,5,'Words Here','LR',1,'C',0);  // cell with left and right borders
+$pdf->Cell(50,5,'[ x ] abc',1,0,'L',0);
+$pdf->Cell(50,5,'[ x ] checkbox1',1,0,'L',0);
+$pdf->Cell(40,5,'','LBR',1,'L',0);   // empty cell with left,bottom, and right borders
+$pdf->Cell(50,5,'[ x ] def',1,0,'L',0);
+$pdf->Cell(50,5,'[ x ] checkbox2',1,0,'L',0);
+//$pdf->PrintPDF(2, 'THE PROS AND CONS', '../pdf/Hola.txt');
 $pdf->Output();
 
 ?>

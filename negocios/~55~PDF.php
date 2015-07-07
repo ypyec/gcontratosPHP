@@ -46,11 +46,34 @@ class PDF extends FPDF
         $this->Titulo($archivoTitulo, $numeroContrato, $tituloContrato);
         $this->Cuerpo($archivoCuerpo);
     }
+    function test(){
+        /*$this->AddPage();
+        $this->Cell(40,5,' ','LTR',0,'L',0);   // empty cell with left,top, and right borders
+$this->Cell(50,5,'111 Here',1,0,'L',0);
+$this->Cell(50,5,'222 Here',1,0,'L',0);
+
+                $this->Ln();
+
+$this->Cell(40,5,'Solid Here','LR',0,'C',0);  // cell with left and right borders
+$this->Cell(50,5,'[ o ] che1','LR',0,'L',0);
+$this->Cell(50,5,'[ x ] che2','LR',0,'L',0);
+
+                $this->Ln();
+*/
+$this->Cell(40,5,'','LBR',0,'L',0);   // empty cell with left,bottom, and right borders
+$this->Cell(50,5,'[ x ] def3','LRB',0,'L',0);
+$this->Cell(50,5,'[ o ] def4','LRB',0,'L',0);
+
+                $this->Ln();
+                $this->Ln();
+                $this->Ln();
+    }
 }
 //$pdf->Output('../pdf/contrato.pdf','F');
 $pdf = new PDF();
 
-$pdf->PrintPDF(2, 'THE PROS AND CONS', '../pdf/Hola.txt');
+$pdf->test();
+//$pdf->PrintPDF(2, 'THE PROS AND CONS', '../pdf/Hola.txt');
 $pdf->Output();
 
 ?>

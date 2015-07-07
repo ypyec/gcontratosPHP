@@ -224,7 +224,6 @@ class NegoContrato
             $this->proyecto->crearProyecto();
         if (!is_array($this->usuario->buscarUsuario()))
             $this->usuario->crearUsuario();
-
         return datosContrato::crearContrato($this->fechaInicio, $this->fechaFin, $this->
             consultoria, $this->monto, $this->pais, $this->usuario->getId(), $this->persona->
             getId(), $this->proyecto->getId(), $this->fechaFirma, is_null($this->empresa) ? null :
@@ -237,7 +236,7 @@ class NegoContrato
         if ($this->proyecto == null)
             return "El nombre del proyecto esta vacio";
         else
-            return datosContrato::buscarContratoProyecto($this->proyecto);
+            return datosContrato::buscarContratoProyecto($this->proyecto->getId());
     }
 
     public function buscarContratoNumero()
