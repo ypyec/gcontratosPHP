@@ -18,13 +18,16 @@ switch ($accion)
         break;
 
     case 'crearContratoPersona':
-        $parametroCuenta = new NegoCuentaBanco($numeroCuenta, $nombreBanco, $tipoCuenta, $swift);
-    
+        $parametroArea = new negoArea($idArea, $nombreArea);
+
+        $parametroProyecto = new negoProyecto($idProyecto, $nombreProyecto, $parametroArea);
+
+        $parametroCuenta = new NegoCuentaBanco($numeroCuenta, $nombreBanco, $tipoCuenta,
+            $swift);
+
         $parametroPersona = new negoPersona($idPersona, $nombresPersona, $apellidosPersona,
             $profesionPersona, $telefonoPersona, $ciudadPersona, $paisPersona, $cargoPersona,
             $parametroCuenta, $experienciaXPersona, $direccionXPersona);
-
-        $parametroProyecto = new negoProyecto($idProyecto, $nombreProyecto, $idArea);
 
         $parametroUsuario = new negoUsuario($idUsuario, $nombreUsuario, $emailUsuario);
 
@@ -33,12 +36,18 @@ switch ($accion)
             $parametroUsuario, $parametroPersona, $parametroEmpresa, $parametroProyecto, $descripcionXContrato,
             $obligacionesAdicionalesXContrato, $IVAXContrato, $IRXContrato, $gastosXContrato,
             $formaPagoXContrato, $fechaElaboracionXContrato, $duracionXContrato);
+
         $respuesta = $contrato->crearContrato();
         break;
 
     case 'crearContratoEmpresa':
-        $parametroCuenta = new NegoCuentaBanco($numeroCuenta, $nombreBanco, $tipoCuenta, $swift);
-    
+        $parametroArea = new negoArea($idArea, $nombreArea);
+
+        $parametroProyecto = new negoProyecto($idProyecto, $nombreProyecto, $parametroArea);
+
+        $parametroCuenta = new NegoCuentaBanco($numeroCuenta, $nombreBanco, $tipoCuenta,
+            $swift);
+
         $parametroPersona = new negoPersona($idPersona, $nombresPersona, $apellidosPersona,
             $profesionPersona, $telefonoPersona, $ciudadPersona, $paisPersona, $cargoPersona,
             $parametroCuenta, $experienciaXPersona, $direccionXPersona);

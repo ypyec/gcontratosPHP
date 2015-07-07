@@ -57,6 +57,7 @@ class NegoUsuario
     {
 
         return datosUsuario::crearUsuario($this->nombre, $this->email);
+
     }
 
     public function actualizarUsuario()

@@ -34,7 +34,7 @@ class datosContrato
     public static function buscarContratoNumero($numero)
     {
 
-        $sql = "SELECT * FROM vContratoCompleta WHERE 'Numero de contrato'='" . $numero .
+        $sql = "SELECT * FROM vContratoCompleta WHERE `Numero de contrato`='" . $numero .
             "'";
 
         return self::ejecutarConsulta($sql);
@@ -63,18 +63,25 @@ class datosContrato
         $conexion = abrir_conexion();
         $resultado = $conexion->query($sql);
 
-        if ($resultado === true) {
+        if ($resultado === true)
+        {
             $conexion->close();
             return $resultado;
-        } elseif ($conexion->error == "" && $resultado->num_rows > 0) {
+        } elseif ($conexion->error == "" && $resultado->num_rows > 0)
+        {
             while ($fila = $resultado->fetch_object())
+            {
                 $objeto = $fila;
+                echo $fila['Numero de Contrato'];
+            }
             $conexion->close();
             return $objeto;
-        } else {
+        } else
+        {
             return "Error en la consulta: " . $conexion->error;
             $conexion->close();
         }
     }
 }
+
 ?>

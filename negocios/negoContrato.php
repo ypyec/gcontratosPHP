@@ -225,10 +225,10 @@ class NegoContrato
         if (!is_object($this->usuario->buscarUsuario()))
             $this->usuario->crearUsuario();
 
-        return datosContrato::crearContrato($this->fechaInicio, $this->fecchaFin, $this->
-            fechaFin, $this->consultoria, $this->monto, $this->pais, $this->usuario->getId(),
-            $this->persona->getId(), $this->proyecto->getId(), $this->fechaFirma, $this->
-            empresa->getRuc(), $this->link);
+        return datosContrato::crearContrato($this->fechaInicio, $this->fechaFin, $this->
+            consultoria, $this->monto, $this->pais, $this->usuario->getId(), $this->persona->
+            getId(), $this->proyecto->getId(), $this->fechaFirma, is_null($this->empresa) ? null :
+            $this->empresa->getRuc(), $this->link);
     }
 
     public function buscarContratoProyecto()

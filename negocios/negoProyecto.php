@@ -56,14 +56,16 @@ class NegoProyecto
 
     public function crearProyecto()
     {
-
-        return datosProyecto::crearProyecto($this->nombre, $this->area);
+        if (!is_object($this->area->buscarArea()))
+            $this->area->crearArea();
+        return datosProyecto::crearProyecto($this->nombre, $this->area->getId());
     }
 
     public function actualizarProyecto()
     {
 
-        return datosProyecto::actualizarProyecto($this->nombre, $this->area, $this->id);
+        return datosProyecto::actualizarProyecto($this->nombre, $this->area->getId(), $this->
+            id);
     }
 
     public function buscarProyectos()

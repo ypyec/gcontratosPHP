@@ -6,7 +6,7 @@ class datosUsuario
     public static function crearUsuario($nombre, $mail)
     {
 
-        $sql = "INSERT INTO T_USUARIO ('USU_NOMBRE','USU_MAIL') VALUES ('" . $nombre .
+        $sql = "INSERT INTO T_USUARIO (USU_NOMBRE,USU_MAIL) VALUES ('" . $nombre .
             "','" . $mail . "')";
 
         return self::ejecutarConsulta($sql);
@@ -24,8 +24,8 @@ class datosUsuario
     public static function buscarUsuario($id)
     {
 
-        $sql = "SELECT * FROM T_USUARIO WHERE USU_ID='.$id.'";
-
+        $sql = "SELECT * FROM T_USUARIO WHERE USU_ID='".$id."'";
+        
         return self::ejecutarConsulta($sql);
     }
 

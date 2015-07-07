@@ -8,9 +8,9 @@ class datosPersona
     {
 
         $sql = "INSERT INTO T_PERSONA VALUES ('" . $id . "','" . $nombres . "','" . $apellidos .
-            "','" . is_null($profesion) ? 'null' : $profesion . "','" . is_null($telefono) ?
-            'null' : $telefono . "','" . is_null($ciudad) ? 'null' : $ciudad . "','" .
-            is_null($pais) ? 'null' : $ciudad . "','" . is_null($cargo) ? 'null' : $cargo .
+            "','" . (is_null($profesion) ? 'null' : $profesion) . "','" . (is_null($telefono) ?
+            'null' : $telefono) . "','" . (is_null($ciudad) ? 'null' : $ciudad) . "','" .
+            (is_null($pais) ? 'null' : $pais) . "','" . (is_null($cargo) ? 'null' : $cargo) .
             "')";
 
         return self::ejecutarConsulta($sql);
@@ -41,7 +41,6 @@ class datosPersona
 
         $conexion = abrir_conexion();
         $resultado = $conexion->query($sql);
-
         if ($resultado === true) {
             $conexion->close();
             return $resultado;
