@@ -72,7 +72,6 @@ class datosContrato
             while ($fila = $resultado->fetch_object())
             {
                 $objeto = $fila;
-                echo $fila['Numero de Contrato'];
             }
             $conexion->close();
             return $objeto;
