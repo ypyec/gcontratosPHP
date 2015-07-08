@@ -56,6 +56,13 @@ class datosContrato
 
         return self::ejecutarConsulta($sql);
     }
+    
+    public static function ultimoContrato(){
+        
+        $sql = "SELECT * FROM t_contrato order by con_numero desc limit 1 ";
+        
+        return self::ejecutarConsulta($sql); 
+    } 
 
     private function ejecutarConsulta($sql)
     {

@@ -217,6 +217,10 @@ class NegoContrato
     }
     public function crearContrato()
     {
+        $this->numero = datosContrato::ultimoContrato()[0]->CON_NUMERO + 1;
+        $object = (object) ['numeroContrato' => null, 'link' => null];
+        $link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+        $link = str_replace('ws/wsCreacion.php',"pdf/contrato-$this->numero.pdf", $link);
         if (!is_array($this->persona->buscarPersona()))
             $this->persona->crearPersona();
         if (!is_null($this->empresa) && !is_array($this->empresa->buscarEmpresa()))
@@ -228,10 +232,12 @@ class NegoContrato
         $contrato = datosContrato::crearContrato($this->fechaInicio, $this->fechaFin, $this->
             consultoria, $this->monto, $this->pais, $this->usuario->getId(), $this->persona->
             getId(), $this->proyecto->getId(), $this->fechaFirma, is_null($this->empresa) ? null :
-            $this->empresa->getRuc(), $this->link);
+            $this->empresa->getRuc(), $link);
 
         if ($contrato)
         {
+            $object->numeroContrato = $this->numero;
+            $object->link = $link;
             $pdf = new PDF();
             $pdf->ImprimirPDF($this->numero, 'Persona', $this->persona->getNombres(), $this->
                 persona->getApellidos(), $this->persona->getId(), $this->persona->getProfesion(),
@@ -244,13 +250,13 @@ class NegoContrato
                 persona->getIdCuentaX()) ? null : $this->persona->getIdCuentaX()->getTipo(),
                 is_null($this->persona->getIdCuentaX()) ? null : $this->persona->getIdCuentaX()->
                 getSwift(), $this->persona->getDireccionX(), $this->persona->getCiudad(), $this->
-                persona->getPais(), $this->fechaFirma, $this->proyecto->
-                getArea()->buscarArea()->A_NOMBRE, $this->proyecto->getNombre(), $this->usuario->
-                getNombre(), $this->getFechaElaboracionX());
-            $pdf->Output('../pdf/contratoewqewqeqweq.pdf','F');
+                persona->getPais(), $this->fechaFirma, $this->proyecto->getArea()->buscarArea()[0]->
+                A_NOMBRE, $this->proyecto->getNombre(), $this->usuario->getNombre(), $this->
+                getFechaElaboracionX());
+            $pdf->Output("../pdf/contrato-$this->numero.pdf", 'F');
         }
 
-        return $contrato;
+        return $object;
     }
 
     public function buscarContratoProyecto()
