@@ -6,6 +6,8 @@ class PDF extends FPDF
     function Titulo($file, $numero, $titulo)
     {
         // Read text file
+        $lines = file($file);
+        echo json_encode($lines);
         $txt = file_get_contents($file);
         $txt = str_replace(['$numero', '$titulo'], [$numero, $titulo], $txt);
         // Arial 12
@@ -45,29 +47,25 @@ class PDF extends FPDF
         $this->Ln();
     }
 
-    function ImprimirPDF($numeroContrato, $tituloContrato, $nombre, $apellido, $idPersona, $profesionPersona, $XExperiencaPersona,
-        $consultoriaPersona, $xDescripcionPersona, $xObligacionesAdicionalesPersona, $xDuracionPersona,
-        $fechaInicio, $fechaFin, $montoPersona, $xIva, $xIr, $paisContrato, $xGastos, $xFormaPago,
-        $nombreBanco, $numeroCuenta, $tipoCuenta, $swift, $XDireccionPersona, $ciudadPersona,
-        $paisPersona, $fechaFirma, $nombreArea, $proyectoNombre, $usuarioNombre, $xFechaElaboracion)
+    function ImprimirPDF($archivoTitulo, $numeroContrato, $tituloContrato)
     {
         $this->AddPage();
-        $this->Titulo('../pdf/titulo.txt', $numeroContrato, $tituloContrato);
-        $this->Cuerpo('../pdf/cuerpo.txt', $nombre, $apellido, $idPersona, $profesionPersona, $XExperiencaPersona,
-        $consultoriaPersona, $xDescripcionPersona, $xObligacionesAdicionalesPersona, $xDuracionPersona,
-        $fechaInicio, $fechaFin, $montoPersona, $xIva, $xIr, $paisContrato, $xGastos, $xFormaPago,
-        $nombreBanco, $numeroCuenta, $tipoCuenta, $swift, $XDireccionPersona, $ciudadPersona,
-        $paisPersona, $fechaFirma, $nombreArea, $proyectoNombre, $usuarioNombre, $xFechaElaboracion);
-        
+        $this->Titulo($archivoTitulo, $numeroContrato, $tituloContrato);
+        $this->Cuerpo($archivoCuerpo);
     }
 }
 //$pdf->Output('../pdf/contrato.pdf','F');
-/*$pdf = new PDF();
+$pdf = new PDF();
 $pdf->AddPage();
 $pdf->Titulo('../pdf/titulo.txt', 1, 'TEST');
-$pdf->Cuerpo('../pdf/cuerpo.txt', 'test', 'test', 'test', 'test', 'test', 'test',
+$lines = file('../pdf/titulo.txt');
+$data = array();
+    foreach($lines as $line)
+    $data[] = explode(';',trim($line));
+    echo $data;
+/*$pdf->Cuerpo('../pdf/cuerpo.txt', 'test', 'test', 'test', 'test', 'test', 'test',
     'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test',
-    'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test','test');
-$pdf->Output();*/
+    'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test','test');*/
+//$pdf->Output();
 
 ?>

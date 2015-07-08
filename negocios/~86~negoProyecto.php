@@ -12,6 +12,8 @@ class NegoProyecto
 
     function __construct($id = null, $nombre = null, $area = null)
     {
+        $proyecto = $this->buscarProyectos($id);
+        if(!is_array($proyecto)){
 
         $parametros = get_defined_vars();
         $variables = get_class_vars(__class__);
@@ -26,6 +28,10 @@ class NegoProyecto
                     break;
                 }
             }
+        }
+        }else{
+            foreach(get_object_vars($proyecto[0]) as $campo => $valor)
+            echo $campo;
         }
     }
 
@@ -47,7 +53,7 @@ class NegoProyecto
     }
     public function getArea()
     {
-        return $this->area;
+        return $this->area->getId();
     }
     public function setArea($area)
     {
@@ -74,5 +80,6 @@ class NegoProyecto
         return datosProyecto::buscarProyecto($this->id);
     }
 }
+$proyecto = new NegoProyecto(1);
 
 ?>

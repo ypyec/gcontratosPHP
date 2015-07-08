@@ -76,157 +76,77 @@ Si fuera necesario incurrir en costos menores, como parte de la prestación de lo
 Los pagos se realizarán por transferencia bancaria de acuerdo a la siguiente información:
 		
 Nombre del banco: cuenta.NombreBanco
-Nº de cuenta: " + cuenta.Numero + "\n" +
-				    "Tipo de cuenta: " + cuenta.Tipo + "\n" +
-				    "Código SWIFT: " + cuenta.Swift + "\n" +
-				    "Nombre en la cuenta: " + persona.Nombres + " " + persona.Apellidos + "\n" +
-				    "Cédula/RUC en cuenta: " + persona.Id + "\n" +
-				    "Dirección del beneficiario: " + persona.XDireccion, normal));
+Nº de cuenta: cuenta.Numero 
+Tipo de cuenta: cuenta.Tipo
+Código SWIFT: cuenta.Swift
+Nombre en la cuenta: persona.Nombres persona.Apellidos 
+Cédula/RUC en cuenta: persona.Id 
+Dirección del beneficiario: persona.XDireccion
 		
-		    agregarLineasEnBlanco(document, 1);
+En caso de incumplimiento injustificado del plazo estipulado en este contrato para la entrega de los trabajos o productos, la CONTRATISTA pagará a la CONTRATANTE una multa equivalente al uno por mil (0.1%) del total del contrato por cada día de retraso.  Esta multa será retenida automáticamente de los valores pendientes de pago.
 		
-		    document.Add(new Paragraph("En caso de incumplimiento injustificado del plazo estipulado en este contrato para la entrega de los " +
-				    "trabajos o productos, la CONTRATISTA pagará a la CONTRATANTE una multa equivalente al uno por mil (0.1%) del total del " +
-				    "contrato por cada día de retraso.  Esta multa será retenida automáticamente de los valores pendientes de pago.", normal));
-		
-		    agregarLineasEnBlanco(document, 1);
-		
-		    document.Add(new Paragraph("Si el monto de la multa excediere el 5% del valor total de contrato, la CONTRATANTE podrá darlo por " +
-				    "terminado en forma anticipada y unilateral y procederá a realizar la liquidación respectiva.", normal));
+Si el monto de la multa excediere el 5% del valor total de contrato, la CONTRATANTE podrá darlo por terminado en forma anticipada y unilateral y procederá a realizar la liquidación respectiva.
 	
-		    agregarLineasEnBlanco(document, 1);
+El cobro de la multa estipulada no exonerará a la CONTRATISTA del pago de indemnizaciones por daños y perjuicios que tal retardo ocasione al CONTRATANTE.
 		
-		    document.Add(new Paragraph("El cobro de la multa estipulada no exonerará a la CONTRATISTA del pago de indemnizaciones por daños y " +
-				    "perjuicios que tal retardo ocasione al CONTRATANTE.", normal));
+Las multas no se aplicarán en casos de fuerza mayor ocasionados por terceros siempre que estén debidamente documentados.
 		
-		    agregarLineasEnBlanco(document, 1);
+OCTAVA: IMPUESTOS.-
 		
-		    document.Add(new Paragraph("Las multas no se aplicarán en casos de fuerza mayor ocasionados por terceros siempre que estén debidamente " +
-				    "documentados.", normal));
+Serán de cuenta de cada una de las partes, la declaración y pago de todos los tributos, que se generen con ocasión del presente contrato de prestación de servicios.
 		
-		    agregarLineasEnBlanco(document, 1);
+NOVENA: CONFIDENCIALIDAD.-
 		
-		    //OCTAVA
-		    document.Add(new Paragraph("OCTAVA: IMPUESTOS.-", subtitulo));
+Las partes respetarán la confidencialidad sobre las políticas, procedimientos, fórmulas, técnicas de administración e información legal, financiera, etc. que, con ocasión de la prestación de los servicios aquí descritos, llegaren a tener conocimiento, incluso harán que sus empleados, agentes y subcontratistas la mantengan, siendo responsables del cumplimiento de esta obligación por parte de aquellos.
 		
-		    agregarLineasEnBlanco(document, 1);
+DÉCIMA: SITUACIÓN DE LAS PARTES.-
 		
-		    document.Add(new Paragraph("Serán de cuenta de cada una de las partes, la declaración y pago de todos los tributos, que se generen con " +
-				    "ocasión del presente contrato de prestación de servicios.", normal));
-		
-		    agregarLineasEnBlanco(document, 1);
-		
-		    //NOVENA
-		    document.Add(new Paragraph("NOVENA: CONFIDENCIALIDAD.-", subtitulo));
-		
-		    agregarLineasEnBlanco(document, 1);
+Se entiende claramente que, dentro de este Contrato, los contratantes constituyen partes distintas, individuales, independientes y autónomas, por lo cual su única vinculación es a través de este instrumento.
 	
-		    document.Add(new Paragraph("Las partes respetarán la confidencialidad sobre las políticas, procedimientos, fórmulas, técnicas de administración " +
-				    "e información legal, financiera, etc. que, con ocasión de la prestación de los servicios aquí descritos, llegaren a tener conocimiento, " +
-				    "incluso harán que sus empleados, agentes y subcontratistas la mantengan, siendo responsables del cumplimiento de esta obligación " +
-				    "por parte de aquellos.", normal));
-		
-		    agregarLineasEnBlanco(document, 1);
-		
-		    //DECIMA
-		    document.Add(new Paragraph("DÉCIMA: SITUACIÓN DE LAS PARTES.-", subtitulo));
-		
-		    agregarLineasEnBlanco(document, 1);
-		
-		    document.Add(new Paragraph("Se entiende claramente que, dentro de este Contrato, los contratantes constituyen partes distintas, individuales, " +
-				    "independientes y autónomas, por lo cual su única vinculación es a través de este instrumento.", normal));
-	
-		    agregarLineasEnBlanco(document, 1);
-		
-		    document.Add(new Paragraph("En este sentido las partes no son, ni serán, consideradas como socios, accionistas, agentes, representantes, distribuidores " +
-				    "o empresarios, motivo por el cual ninguno de ellos podrá obligar a comprometer al otro, en ningún tipo de contrato, convenio, acuerdo, petición, " +
-				    "acto, promesa u obligación en general.", normal));
-		
-		    agregarLineasEnBlanco(document, 1);
-		
-		    document.Add(new Paragraph("Ninguna de las partes podrá hacer responsable a la otra, de sus actos, deudas u obligaciones contraídas.", normal));
-		
-		    agregarLineasEnBlanco(document, 1);
-		
-		    //DECIMA PRIMERA
-		    document.Add(new Paragraph("DÉCIMA PRIMERA: RESPONSABILIDADES.-", subtitulo));
-		
-		    agregarLineasEnBlanco(document, 1);
-		
-		    document.Add(new Paragraph("Las partes se obligan a cumplir lo establecido en este contrato. El incumplimiento, por parte de cualquiera de éstas, de alguna de " +
-				    "las cláusulas de este instrumento permitirá a la otra parte, la conclusión inmediata del mismo y el cobro de una indemnización, por los daños y perjuicios " +
-				    "que se ocasionaren. Si para el cumplimiento de este contrato la CONTRATISTA debe contratar personal, la responsabilidad respecto de ellos es exclusiva de la " +
-				    "CONTRATISTA, por lo que en forma expresa libera a la CONTRATANTE de cualquier responsabilidad laboral.", normal));
-		
-		    agregarLineasEnBlanco(document, 1);
-		
-		    //DECIMA SEGUNDA
-		    document.Add(new Paragraph("DECIMA SEGUNDA: DOMICILIO.-", subtitulo));
-		
-		    agregarLineasEnBlanco(document, 1);
-		
-		    document.Add(new Paragraph("1.	La CONTRATANTE tiene su domicilio en la calle Guipúzcoa E16-02 y Av. Coruña, Quito - Ecuador." + 
-				    "\n \n" + "2.	La CONTRATISTA está domiciliada en " + persona.XDireccion + ", " + persona.Ciudad + ", " + persona.Pais + ".", normal));
-	
-		    agregarLineasEnBlanco(document, 1);
-		
-		    //DECIMA TERCERA
-		    document.Add(new Paragraph("DÉCIMA TERCERA: CONTROVERSIAS.-", subtitulo));
-		
-		    agregarLineasEnBlanco(document, 1);
-		
-		    document.Add(new Paragraph("En el evento de presentarse cualquier controversia relacionada con o derivada de este contrato y su " +
-				    "ejecución, y que no pueda ser resuelta mediante mutuo acuerdo entre las partes, directamente o a través de una mediación en " +
-				    "el Centro de Arbitraje y Mediación de la Cámara de Comercio de Quito, las partes renuncian fuero y domicilio y se someten a " +
-				    "la resolución de un Tribunal de Arbitraje de la Cámara de Comercio de Quito, que se sujetará a lo dispuesto en " +
-				    "la Ley de Arbitraje y Mediación vigente.", normal));
-		
-		    agregarLineasEnBlanco(document, 1);
-		
-		    //DECIMA CUARTA
-		    document.Add(new Paragraph("DÉCIMA CUARTA: ACEPTACIÓN.-", subtitulo));
-		
-		    agregarLineasEnBlanco(document, 1);
-		
-		    document.Add(new Paragraph("Las partes declaran aceptar el contenido de este contrato, incluyendo los documentos anexos, por así convenir " +
-				    "a sus intereses. Para constancia de lo acordado, las partes suscriben el presente contrato en la ciudad de Quito, " +
-				    "el día " + fechaFirma + ".", normal));
-		
-		    agregarLineasEnBlanco(document, 3);
-		
-		    /*
-		     * FIRMAS
-		     */
-		    PdfPTable tabla = new PdfPTable(2);
-		
-		    PdfPCell contratante1 = new PdfPCell(new Phrase("CONTRATANTE", subtitulo));
-		
-		    PdfPCell contratista1 = new PdfPCell(new Phrase("CONTRATISTA", subtitulo));
-		
-		    PdfPCell contratante2 = new PdfPCell(new Phrase("\n \n \n" +
-				    "____________________________\n" +
-				    "Marianela Curi \n" +
-				    "Directora Ejecutiva \n" +
-				    "Fundación Futuro Latinoamericano", normal));
-		
-		    PdfPCell contratista2 = new PdfPCell(new Phrase("\n \n \n" +
-				    "____________________________\n" + 
-				    persona.Nombres + " " + persona.Apellidos + "\n" +
-				    persona.Id, normal));
-		
+En este sentido las partes no son, ni serán, consideradas como socios, accionistas, agentes, representantes, distribuidores o empresarios, motivo por el cual ninguno de ellos podrá obligar a comprometer al otro, en ningún tipo de contrato, convenio, acuerdo, petición, acto, promesa u obligación en general.
 
+Ninguna de las partes podrá hacer responsable a la otra, de sus actos, deudas u obligaciones contraídas.
 		
-		    contratante1.BorderWidth = 0f;
-            contratista1.BorderWidth = 0f;
-            contratante2.BorderWidth = 0f;
-            contratista2.BorderWidth = 0f;
+DÉCIMA PRIMERA: RESPONSABILIDADES.-
 		
-		    tabla.AddCell(contratante1);
-		    tabla.AddCell(contratista1);
-		    tabla.AddCell(contratante2);
-		    tabla.AddCell(contratista2);
+Las partes se obligan a cumplir lo establecido en este contrato. El incumplimiento, por parte de cualquiera de éstas, de alguna de las cláusulas de este instrumento permitirá a la otra parte, la conclusión inmediata del mismo y el cobro de una indemnización, por los daños y perjuicios que se ocasionaren. Si para el cumplimiento de este contrato la CONTRATISTA debe contratar personal, la responsabilidad respecto de ellos es exclusiva de la CONTRATISTA, por lo que en forma expresa libera a la CONTRATANTE de cualquier responsabilidad laboral.
 		
-		    document.Add(tabla);
+DECIMA SEGUNDA: DOMICILIO.-
 		
-		    agregarLineasEnBlanco(document, 2);
+1.	La CONTRATANTE tiene su domicilio en la calle Guipúzcoa E16-02 y Av. Coruña, Quito - Ecuador.
+
+2.	La CONTRATISTA está domiciliada en persona.XDireccion, persona.Ciudad, persona.Pais.
+	
+DÉCIMA TERCERA: CONTROVERSIAS.-
+		
+En el evento de presentarse cualquier controversia relacionada con o derivada de este contrato y su ejecución, y que no pueda ser resuelta mediante mutuo acuerdo entre las partes, directamente o a través de una mediación en el Centro de Arbitraje y Mediación de la Cámara de Comercio de Quito, las partes renuncian fuero y domicilio y se someten a la resolución de un Tribunal de Arbitraje de la Cámara de Comercio de Quito, que se sujetará a lo dispuesto en la Ley de Arbitraje y Mediación vigente.
+
+DÉCIMA CUARTA: ACEPTACIÓN.-
+		
+Las partes declaran aceptar el contenido de este contrato, incluyendo los documentos anexos, por así convenir a sus intereses. Para constancia de lo acordado, las partes suscriben el presente contrato en la ciudad de Quito, el día fechaFirma.
+
+CONTRATANTE									CONTRATISTA
+
+
+
+____________________________						____________________________
+Marianela Curi								persona.Nombres persona.Apellidos
+Directora Ejecutiva							persona.Id
+Fundación Futuro Latinoamericano
+
+
+
+INFORMACION INTERNA FFLA:
+Iniciativa Estratégica o Programa: proyecto.Programa
+Proyecto: proyecto.Nombre
+Responsable contrato en FFLA: xUsuario
+Fecha de elaboración: xFechaElaboracion
+		
+REGISTRO DAF:
+		
+Recibe para aprobación final: ___________\n" +
+				    "Entrega a DE para firma: __________\n" +
+				    "Recibe con firma de DE: __________\n" +
+				    "Entrega para firma de Contratista: ___________\n" +
+				    "Recibe con firma de Contratista: ___________",
 		
